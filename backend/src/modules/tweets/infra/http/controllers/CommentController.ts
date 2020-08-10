@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import CreateCommentInAPostService from '@modules/tweets/service/CreateCommentInAPostService';
-import UpdateCommentService from '@modules/tweets/service/UpdateCommentService';
-import DeleteCommentService from '@modules/tweets/service/DeleteCommentService';
-import ShowCommentsService from '@modules/tweets/service/ShowCommentsService';
+import CreateCommentInAPostService from '@modules/tweets/services/CreateCommentInAPostService';
+import UpdateCommentService from '@modules/tweets/services/UpdateCommentService';
+import DeleteCommentService from '@modules/tweets/services/DeleteCommentService';
+import ShowCommentsService from '@modules/tweets/services/ShowCommentsService';
 
 export default class CommentController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -38,12 +38,12 @@ export default class CommentController {
 
   public async delete(request: Request, response: Response): Promise<Response> {
     const token_id = request.user.id;
-    const { comment_user_id } = request.params;
+    const { comment_id } = request.params;
 
     const deleteComment = container.resolve(DeleteCommentService);
 
     await deleteComment.execute({
-      comment_user_id,
+      comment_id,
       token_id,
     });
 

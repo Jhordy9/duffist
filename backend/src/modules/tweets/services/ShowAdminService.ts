@@ -24,18 +24,12 @@ class ShowCommentsService {
     const findPostId = await this.postsRepository.findUser(token_id);
 
     if (!findPostId) {
-      throw new AppError('User non-existing');
+      throw new AppError("This user don't have any post");
     }
 
     const { id } = findPostId;
 
-    const comments = await this.commentsRepository.findAdmin(id);
-
-    if (!comments) {
-      throw new AppError("You don't have comment in any post");
-    }
-
-    return comments;
+    return this.commentsRepository.findAdmin(id);
   }
 }
 

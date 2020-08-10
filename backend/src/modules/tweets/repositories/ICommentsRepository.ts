@@ -1,7 +1,7 @@
 import Comment from '@modules/tweets/infra/typeorm/entities/Comment';
 import ICreateCommentDTO from '@modules/tweets/dtos/ICreateCommentDTO';
 
-export default interface IUsersRepository {
+export default interface ICommentsRepository {
   findCommentById(comment_id: string): Promise<Comment | undefined>;
   findAllCommentsByUserId(
     comment_user_id: string,

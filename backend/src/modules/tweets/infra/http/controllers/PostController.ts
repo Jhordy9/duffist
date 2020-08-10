@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import CreatePostService from '@modules/tweets/service/CreatePostService';
-import UpdatePostService from '@modules/tweets/service/UpdatePostService';
-import DeletePostService from '@modules/tweets/service/DeletePostService';
-import ShowPostsService from '@modules/tweets/service/ShowPostsService';
-import ListAllPostsAnotherUserService from '@modules/tweets/service/ListAllPostsAnotherUserService';
+import CreatePostService from '@modules/tweets/services/CreatePostService';
+import UpdatePostService from '@modules/tweets/services/UpdatePostService';
+import DeletePostService from '@modules/tweets/services/DeletePostService';
+import ShowPostsService from '@modules/tweets/services/ShowPostsService';
+import ListAllPostsAnotherUserService from '@modules/tweets/services/ListAllPostsAnotherUserService';
 
 export default class PostController {
   public async create(request: Request, response: Response): Promise<Response> {
