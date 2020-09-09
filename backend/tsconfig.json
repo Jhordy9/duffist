@@ -2,23 +2,21 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "lib": [
+      "DOM",
+      "ES6",
+      "es2017",
+      "ESNext.AsyncIterable"
+    ],
+    "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
+    "moduleResolution": "node",
+    "removeComments": true,
     "strict": true,
     "strictPropertyInitialization": false,
     "baseUrl": "./src",
     "allowJs": true,
-    "paths": {
-      "@modules/*": [
-        "modules/*"
-      ],
-      "@config/*": [
-        "config/*"
-      ],
-      "@shared/*": [
-        "shared/*"
-      ]
-    },
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
