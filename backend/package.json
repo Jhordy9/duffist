@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node-dev -r tsconfig-paths/register --transpileOnly --ignore-watch node_modules src/shared/infra/http/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --transpileOnly --ignore-watch node_modules src/index.ts",
     "start": "ts-node src/shared/infra/http/server.ts",
     "test": "jest",
     "knex": "knex"
@@ -15,10 +15,13 @@
     "bcryptjs": "^2.4.3",
     "celebrate": "^12.1.1",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "graphql": "^15.3.0",
+    "graphql-tools": "^6.2.1",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.5",
     "moment": "^2.27.0",
     "path": "^0.12.7",

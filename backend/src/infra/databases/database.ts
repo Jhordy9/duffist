@@ -12,12 +12,10 @@ const database = Knex({
   migrations: {
     directory: Path.resolve(__dirname, 'migrations'),
   },
+  seeds: {
+    directory: Path.resolve(__dirname, 'src', 'seed'),
+  },
   searchPath: ['knex', `${process.env.DB_SCHEMA}`],
 });
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-(async () => {
-  await database.migrate.latest();
-})();
 
 export default database;

@@ -12,5 +12,8 @@ module.exports = {
     migrations: {
       directory: Path.resolve(__dirname, 'src', 'infra', 'migrations'),
     },
+    seeds: {
+      directory: Path.resolve(__dirname, 'src', 'seed'),
+    },
   },
 };
