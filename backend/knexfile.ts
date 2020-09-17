@@ -6,8 +6,9 @@ module.exports = {
     connection: {
       port: Number(process.env.DB_PORT),
       host: process.env.DB_HOST,
-      password: process.env.DB_PASSWORD,
+      password: 'jhordy',
       database: process.env.DB_DATABASE,
+      user: 'postgres',
     },
     migrations: {
       directory: Path.resolve(__dirname, 'src', 'infra', 'migrations'),

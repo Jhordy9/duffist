@@ -1,18 +1,19 @@
 import Knex from 'knex';
-import { ApolloError } from 'apollo-server-express';
-import { IUserDTO, IProfileDTO } from 'types';
+import { IUserDTO } from 'types';
 
 interface ICore {
   validator(value: any, rules: any[]): boolean;
-  allows(type: string): IUserDTO | IProfileDTO | undefined;
-  authorization(
-    ctx: IContextDTO,
-    schemaName: string,
-    type: string,
-  ): boolean | ApolloError;
+  hashPassword(password: string): string;
+  comparePassword(password: string, hashed: string): boolean;
+}
+
+interface ILibs {
+  uuidv4(): string;
 }
 
 export default interface IContextDTO {
+  user: IUserDTO | undefined;
   database: Knex;
   core: ICore;
+  libs: ILibs;
 }

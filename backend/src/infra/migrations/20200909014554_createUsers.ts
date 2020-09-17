@@ -8,6 +8,8 @@ export async function up(knex: Knex): Promise<void> {
     table.string('password').notNullable();
     table.timestamp('createdAt').defaultTo(knex.fn.now());
     table.timestamp('updatedAt').defaultTo(knex.fn.now());
+    table.timestamp('deletedAt').defaultTo(knex.fn.now());
+    table.boolean('hasDelete').defaultTo(false);
   });
 }
 

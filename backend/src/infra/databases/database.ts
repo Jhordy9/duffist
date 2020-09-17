@@ -8,6 +8,7 @@ const database = Knex({
     host: process.env.DB_HOST,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
+    user: process.env.DB_USER,
   },
   migrations: {
     directory: Path.resolve(__dirname, 'migrations'),
@@ -17,5 +18,10 @@ const database = Knex({
   },
   searchPath: ['knex', `${process.env.DB_SCHEMA}`],
 });
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+(async () => {
+  await database.migrate.latest();
+})();
 
 export default database;

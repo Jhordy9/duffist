@@ -20,16 +20,15 @@ const tokenVerifier = async (
       const decoded = jwt.verify(token, auth.jwt.secret);
       const { sub } = decoded as ITokenPayLoad;
 
-      const { email, id, name, profiles }: IUserDTO = await database
+      const { email, id, name }: IUserDTO = await database
         .table('users')
-        .where('id', sub)
+        .where('id', '=', sub)
         .first();
 
       req.user = {
         id,
         email,
         name,
-        profiles,
       };
 
       return;

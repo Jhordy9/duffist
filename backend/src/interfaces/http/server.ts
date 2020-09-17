@@ -3,26 +3,40 @@ import 'express-async-errors';
 
 import { ApolloServer } from 'apollo-server-express';
 import Express from 'express';
-
-import { IUserDTO, IProfileDTO, IContextDTO } from 'types';
 import { GraphQLFormattedError } from 'graphql';
+
+import { v4 as uuidv4 } from 'uuid';
+
+import { IContextDTO } from 'types';
+import { schema } from 'schemas';
 import database from '../../infra/databases/database';
-import { checkToken, tokenVerifier, authorization, validator } from './core';
+import {
+  checkToken,
+  tokenVerifier,
+  validator,
+  comparePassword,
+  hashPassword,
+} from './core';
 
 export default () => {
   const server = new ApolloServer({
+    schema,
     context: async ({ req, connection }): Promise<IContextDTO> => {
       const token = checkToken(req, connection);
       const user = await tokenVerifier(req, token);
 
-      const allows = (type: string): IUserDTO | IProfileDTO | undefined => {
-        const hasAuth = user?.profiles.find(
-          profile => profile.userID === user.id && profile.type === type,
-        );
-        return user && hasAuth;
+      return {
+        user,
+        database,
+        core: {
+          validator,
+          comparePassword,
+          hashPassword,
+        },
+        libs: {
+          uuidv4,
+        },
       };
-
-      return { database, core: { authorization, validator, allows } };
     },
     formatError: (response: GraphQLFormattedError): GraphQLFormattedError => {
       return response;
