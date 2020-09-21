@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { IContextDTO } from 'types';
 import { schema } from 'schemas';
-import database from '../../infra/databases/database';
+import database from '../../infra/index';
 import {
   checkToken,
   tokenVerifier,
@@ -21,6 +21,11 @@ import {
 export default () => {
   const server = new ApolloServer({
     schema,
+    playground: {
+      settings: {
+        'editor.theme': 'dark',
+      },
+    },
     context: async ({ req, connection }): Promise<IContextDTO> => {
       const token = checkToken(req, connection);
       const user = await tokenVerifier(req, token);

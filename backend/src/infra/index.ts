@@ -6,17 +6,18 @@ const database = Knex({
   connection: {
     port: Number(process.env.DB_PORT),
     host: process.env.DB_HOST,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-    user: process.env.DB_USER,
+    password: 'jhordy',
+    database: 'duffist',
+    user: 'postgres',
   },
   migrations: {
     directory: Path.resolve(__dirname, 'migrations'),
+    extension: 'ts',
   },
   seeds: {
     directory: Path.resolve(__dirname, 'src', 'seed'),
   },
-  searchPath: ['knex', `${process.env.DB_SCHEMA}`],
+  searchPath: ['knex', 'public'],
 });
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type

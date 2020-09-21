@@ -2,7 +2,7 @@ import { ApolloError } from 'apollo-server-express';
 import { Request } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { IUserDTO } from 'types';
-import database from '../../../infra/databases/database';
+import database from '../../../infra/index';
 import auth from '../../../config/auth';
 
 interface ITokenPayLoad {

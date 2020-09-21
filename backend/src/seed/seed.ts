@@ -11,14 +11,14 @@ const users: IUserDTO[] = [
     name: 'oneUser',
     email: `${email}`,
     password,
-    delete: 0,
+    hasDelete: false,
   },
   {
     id: '2',
     name: 'twoUser',
     email: `${email}`,
     password,
-    delete: 0,
+    hasDelete: false,
   },
 ];
 

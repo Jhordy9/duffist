@@ -7,14 +7,16 @@ module.exports = {
       port: Number(process.env.DB_PORT),
       host: process.env.DB_HOST,
       password: 'jhordy',
-      database: process.env.DB_DATABASE,
+      database: 'duffist',
       user: 'postgres',
     },
     migrations: {
       directory: Path.resolve(__dirname, 'src', 'infra', 'migrations'),
+      extension: 'ts',
     },
     seeds: {
       directory: Path.resolve(__dirname, 'src', 'seed'),
     },
+    searchPath: ['knex', 'public'],
   },
 };

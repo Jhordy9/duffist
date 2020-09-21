@@ -5,23 +5,26 @@ const createUser = async (
   { email, password, name }: IUserDTO,
   ctx: IContextDTO,
 ): Promise<IUserDTO> => {
-  const checkEmail = await ctx.database.from('users').where({ email }).first();
-
-  if (checkEmail) {
-    throw new ApolloError('Email is already registered');
+  if (email) {
+    const checkEmail = await ctx.database.from('users').where(email).first();
+    if (checkEmail) {
+      throw new ApolloError('Email is already registered');
+    }
   }
 
+  const makeID = ctx.libs.uuidv4();
+
   const data: IUserDTO = {
-    id: ctx.libs.uuidv4(),
+    id: makeID,
     name,
     email,
     hasDelete: false,
     password: ctx.core.hashPassword(password),
   };
 
-  const user: IUserDTO = await ctx.database('users').insert(data);
+  await ctx.database('users').insert(data);
 
-  return user;
+  return ctx.database.from('users').where({ id: makeID }).first();
 };
 
 export default createUser;

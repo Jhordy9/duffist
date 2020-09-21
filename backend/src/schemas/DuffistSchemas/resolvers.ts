@@ -1,4 +1,4 @@
-import MergeUser from './Users/Application/Mutations/MergeUser';
+import CreateUser from './Users/Application/Mutations/CreateUser';
 import Users from './Users/Application/Querys/Users';
 import Date from './_definitions/Scalars/Date';
 
@@ -7,7 +7,7 @@ export const resolvers = {
     Users,
   },
   Mutation: {
-    MergeUser,
+    CreateUser,
   },
   Date,
 };

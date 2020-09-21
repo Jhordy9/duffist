@@ -2,10 +2,10 @@
 export const UserDomain = `
   type User {
     id: ID!
-    name: String!
-    email: String!
-    password: String!
-    delete: Int!
+    name: String
+    email: String
+    password: String
+    hasDelete: Boolean
   }
 
   type UserLogin {
@@ -15,14 +15,16 @@ export const UserDomain = `
 
 /* Querys */
 export const UserQuerys = `
-  Users(): [User]
+  Users(
+    filters: usersFilters
+  ): [User]
 `;
 
 /* Mutations */
 export const UserMutations = `
-  MergeUser(
+  CreateUser(
     userInput: userInput
-  ): [User]
+  ): User
 `;
 
 /* Inputs */
@@ -34,7 +36,7 @@ export const UserInputs = `
 
   input userInput {
     id: ID
-    delete: Int
+    hasDelete: Boolean
     userData: userData
   }
 
@@ -42,5 +44,10 @@ export const UserInputs = `
     name: String!
     email: String!
     password: String!
+  }
+
+  input usersFilters {
+    id: ID
+    name: String
   }
 `;
