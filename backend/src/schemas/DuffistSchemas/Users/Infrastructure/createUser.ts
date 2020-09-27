@@ -1,16 +1,24 @@
 import { IUserDTO, IContextDTO } from 'types';
-import { ApolloError } from 'apollo-server-express';
+// import { ApolloError } from 'apollo-server-express';
+
+interface IUserDataDTO {
+  userData: {
+    name: string;
+    password: string;
+    email: string;
+  };
+}
 
 const createUser = async (
-  { email, password, name }: IUserDTO,
+  { userData }: IUserDataDTO,
   ctx: IContextDTO,
 ): Promise<IUserDTO> => {
-  if (email) {
-    const checkEmail = await ctx.database.from('users').where(email).first();
-    if (checkEmail) {
-      throw new ApolloError('Email is already registered');
-    }
-  }
+  const { email, name, password } = userData;
+
+  // const checkEmail = await ctx.database.from('users').where(email).first();
+  // if (checkEmail === email) {
+  //   throw new ApolloError('Email is already registered');
+  // }
 
   const makeID = ctx.libs.uuidv4();
 
@@ -19,7 +27,7 @@ const createUser = async (
     name,
     email,
     hasDelete: false,
-    password: ctx.core.hashPassword(password),
+    password: await ctx.core.hashPassword(password),
   };
 
   await ctx.database('users').insert(data);

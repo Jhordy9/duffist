@@ -9,6 +9,6 @@ export default (
   obj: object,
   { userInput }: IDataInput,
   ctx: IContextDTO,
-): object | null => {
+): object => {
   return createUser(userInput, ctx);
 };

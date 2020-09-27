@@ -21,11 +21,6 @@ import {
 export default () => {
   const server = new ApolloServer({
     schema,
-    playground: {
-      settings: {
-        'editor.theme': 'dark',
-      },
-    },
     context: async ({ req, connection }): Promise<IContextDTO> => {
       const token = checkToken(req, connection);
       const user = await tokenVerifier(req, token);

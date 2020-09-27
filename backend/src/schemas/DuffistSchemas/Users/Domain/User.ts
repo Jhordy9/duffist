@@ -2,10 +2,10 @@
 export const UserDomain = `
   type User {
     id: ID!
-    name: String
-    email: String
-    password: String
-    hasDelete: Boolean
+    name: String!
+    email: String!
+    password: String!
+    hasDelete: Boolean!
   }
 
   type UserLogin {
@@ -15,9 +15,7 @@ export const UserDomain = `
 
 /* Querys */
 export const UserQuerys = `
-  Users(
-    filters: usersFilters
-  ): [User]
+  Users: [User!]!
 `;
 
 /* Mutations */

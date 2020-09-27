@@ -3,8 +3,8 @@ import { IUserDTO } from 'types';
 
 interface ICore {
   validator(value: any, rules: any[]): boolean;
-  hashPassword(password: string): string;
-  comparePassword(password: string, hashed: string): boolean;
+  hashPassword(password: string): Promise<string>;
+  comparePassword(password: string, hashed: string): Promise<boolean>;
 }
 
 interface ILibs {
